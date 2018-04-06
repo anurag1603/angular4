@@ -48,21 +48,42 @@
     <div class="row">
       <div class="form-group col">
         <label>First Name*</label>
-        <input class="form-control" formControlName="firstname" placeholder="first name" type="text" required />
+        <input class="form-control" formControlName="firstname" [ngClass]="(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched) ? 'is-invalid' : 'is-valid'"
+          placeholder="first name" type="text" required />
+        <span class="meta" [hidden]="!(feedbackForm.get('firstname').hasError('required') && 
+              feedbackForm.get('firstname').touched)">
+          firstname is required
+        </span>
       </div>
       <div class="form-group col">
-          <label>Last Name*</label>
-        <input class="form-control" formControlName="lastname" placeholder="last name" type="text" required />
+        <label>Last Name*</label>
+        <input class="form-control" formControlName="lastname" [ngClass]="(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched) ? 'is-invalid' : 'is-valid'"
+          placeholder="last name" type="text" required />
+        <span class="meta" [hidden]="!(feedbackForm.get('lastname').hasError('required') && 
+          feedbackForm.get('lastname').touched)">
+          lastname is required
+        </span>
       </div>
     </div>
     <div class="form-group">
-        <label>Tel Name*</label>
-      <input class="form-control" formControlName="telnum" placeholder="telephone name" type="tel" required />
+      <label>Tel Name*</label>
+      <input class="form-control" formControlName="telnum" placeholder="telephone name" [ngClass]="(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched) ? 'is-invalid' : 'is-valid'"
+        type="tel" required />
+      <span class="meta" [hidden]="!(feedbackForm.get('telnum').hasError('required') && 
+          feedbackForm.get('telnum').touched)">
+          telephone number is required
+      </span>
     </div>
     <div class="form-group">
-        <label>email</label>
-      <input class="form-control" formControlName="email" placeholder="email" type="email" required />
-    </div>
+      <label>email</label>
+      <input class="form-control" 
+             [ngClass]="(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'is-invalid' : 'is-valid'"
+        formControlName="email" placeholder="email" type="email" required />
+        <span class="meta" [hidden]="!(feedbackForm.get('email').hasError('required') && 
+          feedbackForm.get('email').touched)">
+           email is required
+        </span>
+      </div>
     <table class="table">
       <td>
         <input formControlName="agree" type="checkbox"> May we contact you?
@@ -81,7 +102,7 @@
       </textarea>
     </div>
     <div>
-      <button type="submit" class="btn btn-default">
+      <button type="submit" class="btn btn-primary" [disabled]="feedbackForm.invalid">
         Submit
       </button>
     </div>
