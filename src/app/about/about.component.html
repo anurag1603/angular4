@@ -55,7 +55,7 @@
   </div>
 
 
-  <div>
+  <div *ngIf="leaders">
     <h2>Corporate Leadership</h2>
     <p>Display the details of the corporate leaders here</p>
     <div class="container" *ngFor="let leader of leaders">
@@ -68,5 +68,8 @@
         <div class="text-truncate" >{{leader.description}}</div>
       </div>
     </div>
+  </div>
+  <div [hidden]="leaders" class="text-center" >
+    <i class="fa fa-spinner fa-spin"></i>
   </div>
 </div>

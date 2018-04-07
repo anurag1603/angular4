@@ -15,7 +15,7 @@
           </p>
         </md-card-content>
         <md-card-actions>
-          <button md-button (click)="goBack()" >BACK</button>
+          <button md-button (click)="goBack()">BACK</button>
           <button md-button>LIKE</button>
           <button md-button>SHARE</button>
         </md-card-actions>
@@ -23,20 +23,22 @@
     </div>
   </div>
 
-  <div fxFlex="40"
-      *ngIf="dish">
-  
+  <div fxFlex="40" *ngIf="dish">
+
     <md-list>
-        <h3 mat-subheader >Comments</h3>
-      <md-list-item  *ngFor="let comment of dish.comments" >
-         <p md-line>{{comment.comment}} </p>
-         <p md-line>{{comment.rating}} Stars </p>
-         <p md-line> 
-           -- {{comment.author}}
-             {{comment.date | date}}
-          </p>
+      <h3 mat-subheader>Comments</h3>
+      <md-list-item *ngFor="let comment of dish.comments">
+        <p md-line>{{comment.comment}} </p>
+        <p md-line>{{comment.rating}} Stars </p>
+        <p md-line>
+          -- {{comment.author}} {{comment.date | date}}
+        </p>
       </md-list-item>
-     </md-list>
+    </md-list>
+  </div>
+  <div [hidden]="dish"
+      class="text-center">
+    <i class="fa fa-spin fa-spinner"></i>
   </div>
 
 </div>

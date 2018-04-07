@@ -1,6 +1,7 @@
 <div class="container"
      fxLayout="column"
-     fxLayoutGap="10px">
+     fxLayoutGap="10px"
+     *ngIf="dishes">
 
   <div fxFlex>
     <div>
@@ -20,4 +21,7 @@
       </md-grid-tile>
     </md-grid-list>
   </div>
+</div>
+<div [hidden]="dishes" class="text-center">
+  <i class="fa fa-spinner fa-spin" ></i>
 </div>
