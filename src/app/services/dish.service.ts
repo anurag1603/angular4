@@ -3,33 +3,27 @@ import { Dish } from '../shared/dish';
 import { DISHES } from '../shared/dishes';
 import { resolve } from 'url';
 
+import { Observable } from 'rxjs/Observable' ;
+
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class DishService {
 
   constructor() { }
 
-  getDishes(): Promise<Dish[]> {
-    // tslint:disable-next-line:no-shadowed-variable
-    return new Promise(resolve => {
-      // for latency of 2 secs
-      setTimeout(() => resolve(DISHES), 2000);
-    });
-    // return Promise.resolve(DISHES);
+  getDishes(): Observable<Dish[]> {
+    return Observable.of(DISHES).delay(2000);
   }
 
-  getDish(id: number): Promise<Dish> {
-    // tslint:disable-next-line:no-shadowed-variable
-    return new Promise((resolve, reject) => {
-      // for latency of 2 secs
-      setTimeout(() => resolve(DISHES.filter(dish => (dish.id === id))[0]), 2000);
-    });
+  getDish(id: number): Observable<Dish> {
+    return Observable.of(DISHES.filter(dish => (dish.id === id))[0]).delay(2000);
   }
 
-  getFeaturedDish(): Promise<Dish> {
+  getFeaturedDish(): Observable<Dish> {
     // tslint:disable-next-line:no-shadowed-variable
-    return new Promise((resolve, reject) => {
-      // for latency of 2 secs
-      setTimeout(() => resolve(DISHES.filter(dish => dish.featured)[0]), 2000);
-    });
+    return Observable.of(DISHES.filter(dish => dish.featured)[0]).delay(2000);
   }
+
+}
