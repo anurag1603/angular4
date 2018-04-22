@@ -20,9 +20,13 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { NgbdRatingBasicComponent } from './ngbd-rating-basic/ngbd-rating-basic.component';
+import { HttpModule } from '@angular/http';
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    NgbdRatingBasicComponent
   ],
   imports: [
     BrowserModule,
@@ -42,13 +47,17 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
+    HttpModule,
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [DishService,
     PromotionService,
-    LeaderService],
+    LeaderService,
+    ProcessHttpmsgService,
+    {provide: 'BaseURL', useValue: baseURL}
+  ],
   entryComponents: [
     LoginComponent
   ],

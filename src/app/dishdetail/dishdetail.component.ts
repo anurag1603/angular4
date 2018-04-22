@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Params , ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -20,7 +20,8 @@ export class DishdetailComponent implements OnInit {
 
   constructor(private dishservice: DishService ,
     private route: ActivatedRoute,
-         private location: Location) { }
+         private location: Location , 
+         @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.dishservice.getDishIds().subscribe(ids =>  this.dishIds = ids);
@@ -41,6 +42,11 @@ export class DishdetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  onAdding(data) {
+    this.dish.comments.push(data);
+    console.log(data);
   }
 
 }

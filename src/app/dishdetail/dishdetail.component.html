@@ -1,15 +1,14 @@
-<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.gt-md="space-around center"
-  fxLayoutGap="10px" fxLayoutGap.xs="0">
+<div class="container">
 
-  <div fxFlex="40">
-    <div fxFlex *ngIf="dish">
+  <div class="col-md-6"
+       *ngIf="dish">
       <md-card>
         <md-card-header>
           <md-card-title>
             <h3>{{dish.name | uppercase}}</h3>
           </md-card-title>
         </md-card-header>
-        <img md-card-image src={{dish.image}} alt={{dish.name}}>
+        <img md-card-image src="{{BaseURL + dish.image}}"" alt={{dish.name}}>
         <md-card-content>
           <p>{{dish.description}}
           </p>
@@ -25,21 +24,19 @@
           </button>
         </md-card-actions>
       </md-card>
-    </div>
   </div>
 
-  <div fxFlex="40" *ngIf="dish">
-
-    <md-list>
-      <h3 mat-subheader>Comments</h3>
-      <md-list-item *ngFor="let comment of dish.comments">
-        <p md-line>{{comment.comment}} </p>
-        <p md-line>{{comment.rating}} Stars </p>
-        <p md-line>
-          -- {{comment.author}} {{comment.date | date}}
-        </p>
-      </md-list-item>
-    </md-list>
+  <div class="col-md-6" *ngIf="dish">
+    <div>
+      <h3>Comments</h3>
+      <div *ngFor="let comment of dish.comments"
+           class="m-3">
+        <p>{{comment.comment}} </p>
+        <p class="font-italic" >{{comment.rating}} Stars </p>
+        <p class="font-weight-light" >-- {{comment.author}} {{comment.date | date}}</p>
+      </div>
+    </div>
+    <app-ngbd-rating-basic (onCreation)="onAdding($event)" ></app-ngbd-rating-basic>
   </div>
   <div [hidden]="dish"
       class="text-center">
