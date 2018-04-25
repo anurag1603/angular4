@@ -38,9 +38,13 @@
     </div>
     <app-ngbd-rating-basic (onCreation)="onAdding($event)" ></app-ngbd-rating-basic>
   </div>
-  <div [hidden]="dish"
+  <div [hidden]="dish || errorMsg"
       class="text-center">
     <i class="fa fa-spin fa-spinner"></i>
+  </div>
+  <div *ngIf="errorMsg">
+    <h2>Error</h2>
+    <h4>{{errorMsg}}</h4>
   </div>
 
 </div>

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class DishService {
@@ -19,15 +20,21 @@ export class DishService {
   constructor(private http: Http , private processHttpmsgService: ProcessHttpmsgService) { }
 
   getDishes(): Observable<Dish[]> {
-    return this.http.get(baseURL + 'dishes').map(res => this.processHttpmsgService.extractData(res));
+    return this.http.get(baseURL + 'dishes')
+    .map(res => this.processHttpmsgService.extractData(res))
+    .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.http.get(baseURL + 'dishes/' + id).map(res => this.processHttpmsgService.extractData(res));
+    return this.http.get(baseURL + 'dishes/' + id)
+    .map(res => this.processHttpmsgService.extractData(res))
+    .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this.http.get(baseURL + 'dishes?featured=true').map(res => this.processHttpmsgService.extractData(res)[0]);
+    return this.http.get(baseURL + 'dishes?featured=true')
+    .map(res => this.processHttpmsgService.extractData(res)[0])
+    .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getDishIds(): Observable<number[]> {

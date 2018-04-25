@@ -16,11 +16,12 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  errorMsg: string;
 
 
   constructor(private dishservice: DishService ,
     private route: ActivatedRoute,
-         private location: Location , 
+         private location: Location ,
          @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
@@ -31,8 +32,10 @@ export class DishdetailComponent implements OnInit {
   }).subscribe(dish => {console.log(dish);
     this.dish = dish;
     this.setPrevNext(dish.id);
-  });
   }
+    , error => this.errorMsg = error
+  );
+}
 
   setPrevNext(dishId: number) {
     const index = this.dishIds.indexOf(dishId);

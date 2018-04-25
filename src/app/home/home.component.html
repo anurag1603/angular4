@@ -47,8 +47,14 @@
       </p>
     </md-card-content>
   </md-card>
-
-  <div [hidden] = "featuredLeader && promotion && dish"
+<div [hidden] = "dish || dishErrorMsg" class="text-center" >
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
+<div *ngIf="dishErrorMsg">
+ <h2>Error</h2>
+ {{dishErrorMsg}}
+</div>
+  <div [hidden] = "featuredLeader && promotion"
      class="text-center">
     <i class="fa fa-spinner fa-spin"></i>
   </div>
