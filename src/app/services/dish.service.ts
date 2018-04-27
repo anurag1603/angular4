@@ -3,7 +3,7 @@ import { Dish } from '../shared/dish';
 import { resolve } from 'url';
 import { Http, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable' ;
+import { Observable } from 'rxjs/Observable';
 
 import { baseURL } from '../shared/baseurl';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
@@ -17,28 +17,32 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class DishService {
 
-  constructor(private http: Http , private processHttpmsgService: ProcessHttpmsgService) { }
+  constructor(private http: Http, private processHttpmsgService: ProcessHttpmsgService) { }
 
   getDishes(): Observable<Dish[]> {
     return this.http.get(baseURL + 'dishes')
-    .map(res => this.processHttpmsgService.extractData(res))
-    .catch(error => this.processHttpmsgService.handleError(error));
+      .map(res => this.processHttpmsgService.extractData(res))
+      .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getDish(id: number): Observable<Dish> {
     return this.http.get(baseURL + 'dishes/' + id)
-    .map(res => this.processHttpmsgService.extractData(res))
-    .catch(error => this.processHttpmsgService.handleError(error));
+      .map(res => this.processHttpmsgService.extractData(res))
+      .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get(baseURL + 'dishes?featured=true')
-    .map(res => this.processHttpmsgService.extractData(res)[0])
-    .catch(error => this.processHttpmsgService.handleError(error));
+      .map(res => this.processHttpmsgService.extractData(res)[0])
+      .catch(error => this.processHttpmsgService.handleError(error));
   }
 
   getDishIds(): Observable<number[]> {
     return this.getDishes().map(dishes => dishes.map(dish => dish.id));
+  }
+
+  addDishComment(dish: Dish): Observable <Response> {
+    return this.http.put(baseURL + 'dishes/' + dish.id,  dish ).map(res => { console.log(res + 'treer  '); return res; });
   }
 
 }

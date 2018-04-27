@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { NgbdRatingBasicComponent } from './ngbd-rating-basic/ngbd-rating-basic.component';
 import { HttpModule } from '@angular/http';
 import { baseURL } from './shared/baseurl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { baseURL } from './shared/baseurl';
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    NgbdRatingBasicComponent
+    NgbdRatingBasicComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

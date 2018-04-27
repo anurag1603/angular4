@@ -49,6 +49,9 @@ export class DishdetailComponent implements OnInit {
 
   onAdding(data) {
     this.dish.comments.push(data);
+    this.dishservice.addDishComment(this.dish).subscribe(response => {
+      console.log(response);
+    });
     console.log(data);
   }
 
