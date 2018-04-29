@@ -18,7 +18,6 @@ export class NgbdRatingBasicComponent implements OnInit {
   formErrors = {
     'Name': '',
     'Comment': '',
-
   };
 
   validationMessages = {
