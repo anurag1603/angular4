@@ -1,30 +1,23 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutGap="10px"
-     *ngIf="dishes">
+<div class="text-center">
+  <h3 class="text-uppercase ">
+    <u>Menu</u>
+  </h3>
+</div>
 
-  <div fxFlex>
-    <div>
-      <h3>Menu</h3>
-      <hr>
-    </div>
-  </div>
-
-  <div fxFlex>
-    <md-grid-list cols="2" rowHeight="200px">
-      <md-grid-tile *ngFor="let dish of dishes"
-                    [routerLink] = "['/dishdetail' , dish.id]"
-                    appHighlight>
-        <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
-        <md-grid-tile-footer>
+<div class="container" *ngIf="dishes">
+  <div class="">
+    <div class="row">
+      <div *ngFor="let dish of dishes" class="col-md-6 text-center" [routerLink]="['/dishdetail' , dish.id]" appHighlight>
+        <img src="{{'/assets/' + dish.image}}" alt={{dish.name}}>
+        <div>
           <h1 md-line>{{dish.name | uppercase}}</h1>
-        </md-grid-tile-footer>
-      </md-grid-tile>
-    </md-grid-list>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div [hidden]="dishes ||errorMsg" class="text-center">
-  <i class="fa fa-spinner fa-spin" ></i>
+  <i class="fa fa-spinner fa-spin"></i>
 </div>
 <div *ngIf="errorMsg">
   <h2>Error</h2>

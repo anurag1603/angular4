@@ -1,52 +1,40 @@
-<md-toolbar color="primary">
-  <span>
-    <img src="/assets/images/logo.png" 
-         height=30 
-         width=41>
-  </span>
-  <a md-button
-     routerLink="/home"
-     routerLinkActive="active">
-    <span class="fa fa-home fa-lg">
-    </span>Home
-  </a>
-  <a md-button
-     routerLink="/aboutus"
-     routerLinkActive="active">
-    <span class="fa fa-info fa-lg">
-    </span> About</a>
-  <a md-button 
-     routerLink="/menu"
-     routerLinkActive="active">
-    <span class="fa fa-list fa-lg"></span> Menu</a>
-  <a md-button 
-     routerLink="/contactus"
-     routerLinkActive="active">
-    <span class="fa fa-address-card fa-lg">
-    </span> Contact</a>
-    <span class="flex-spacer"></span>
-    <a md-button (click)="onClick()">
-      <span class="fa fa-sign-in fa-lg"></span> 
+<nav class="navbar navbar-expand-sm bg-light navbar-light mb-4">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home" routerLinkActive="active">
+        <img src="/assets/images/logo.png" height=30 width=41>
+        <i class="fa fa-home fa-lg"></i>Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/aboutus" routerLinkActive="active" class="nav-link">
+        <i class="fa fa-info fa-lg"></i> About
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/menu" routerLinkActive="active">
+        <i class="fa fa-list fa-lg"></i> Menu
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/contactus" routerLinkActive="active">
+        <i class="fa fa-address-card fa-lg"></i> Contact</a>
+    </li>
+  </ul>
+  <a class="login-link cursor-pointer" (click)="onClick()">
+    <i class="fa fa-sign-in fa-lg"></i>
       Login
-    </a>
-</md-toolbar>
+  </a>
+</nav>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
-    fxLayoutGap="10px">
-
-  <div fxFlex fxFlex.gt-sm="50%">
-    <h1>Ristorante Con Fusion</h1>
+<div class="container pt-3 pb-3 bg-warning rounded">
+  <div>
+    <h1>Ristorante ConFusion</h1>
     <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
       will tickle your culinary senses!</p>
   </div>
-  <div fxFlex fxFlex.gt-sm="20%">
+  <div>
     <img src="/assets/images/logo.png" alt="Logo">
   </div>
-  <div fxFlex></div>
+  <div></div>
 </div>

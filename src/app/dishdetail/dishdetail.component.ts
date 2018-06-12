@@ -28,9 +28,10 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(ids =>  this.dishIds = ids);
     this.route.params.switchMap((params: Params) => {
     console.log(params);
-    return this.dishservice.getDish(+params['id']);
+    // return this.dishservice.getDish(+params['id']);
+    return this.dishservice.getDishFireBase(+params['id']);
   }).subscribe(dish => {console.log(dish);
-    this.dish = dish;
+    this.dish = dish[0];
     this.setPrevNext(dish.id);
   }
     , error => this.errorMsg = error

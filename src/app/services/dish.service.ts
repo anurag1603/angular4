@@ -13,11 +13,16 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class DishService {
 
-  constructor(private http: Http, private processHttpmsgService: ProcessHttpmsgService) { }
+  constructor(private http: Http, private processHttpmsgService: ProcessHttpmsgService , private db: AngularFireDatabase) { }
+
+  getDishesFireBase() {
+    return this.db.list('dishes').valueChanges();
+  }
 
   getDishes(): Observable<Dish[]> {
     return this.http.get(baseURL + 'dishes')
@@ -29,6 +34,14 @@ export class DishService {
     return this.http.get(baseURL + 'dishes/' + id)
       .map(res => this.processHttpmsgService.extractData(res))
       .catch(error => this.processHttpmsgService.handleError(error));
+  }
+
+  getDishFireBase(id: number): Observable<any> {
+    return this.db.list('dishes' , ref => ref.orderByChild('id').equalTo(id)).valueChanges();
+  }
+
+  getFeaturedDishFireBase(): Observable<any> {
+    return this.db.list('dishes' , ref => ref.orderByChild('featured').equalTo('true')).valueChanges();
   }
 
   getFeaturedDish(): Observable<Dish> {
